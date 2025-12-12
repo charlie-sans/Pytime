@@ -53,10 +53,12 @@ class ObjectIRParser:
             
             # Method declaration
             if line.startswith('method '):
-                match = re.match(r'method\s+(\w+)\s*\(\s*\)\s*->\s*(\w+(?:\.\w+)*)\s*\{', line)
+                # method Name(args) -> ReturnType {
+                match = re.match(r'method\s+(\w+)\s*\((.*?)\)\s*->\s*(\w+(?:\.\w+)*)\s*\{', line)
                 if match:
                     method_name = match.group(1)
-                    return_type = match.group(2)
+                    args_str = match.group(2)
+                    return_type = match.group(3)
                     self.current_method = method_name
                     self.methods[method_name] = []
                     
@@ -84,7 +86,7 @@ class ObjectIRParser:
                 return i
             
             # Parse instruction
-            if brace_count > 0 and line and not line.startswith('}'):
+            if brace_count > 0 and line:
                 # Handle if statements with complex conditions
                 if line.startswith('if '):
                     # Parse the full if statement including condition and body
@@ -139,8 +141,8 @@ class ObjectIRParser:
                             if_block.append(else_body_line)
                             else_brace_count += else_body_line.count('{') - else_body_line.count('}')
                 else: 
-                    # No else clause, get the end of if body
-                    while 
+                    # No else clause, we are done
+                    pass
                 break
            
 

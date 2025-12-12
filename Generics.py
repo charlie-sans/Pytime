@@ -11,7 +11,7 @@ class Console:
     def WriteLine(message: str) -> None:
         """Writes a line to the console."""
         print(message.data if isinstance(message, Value) else message)
-        print("meow")
+        #print("meow")
     @staticmethod
     def ReadLine() -> str:
         """Reads a line from the console."""
