@@ -2,10 +2,6 @@ module HelloWorld
 class Program {
     method Main() -> void {
         call System.Console.ReadLine() -> string
-        if (stack) {
-            ldstr "meow"
-            call System.Console.WriteLine(string) -> void
-        }
         call System.Console.WriteLine(string) -> void
         ret
     }
